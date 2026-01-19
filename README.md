@@ -34,18 +34,13 @@ You'll need the following from your Sendy installation:
 *   **API Key**: Found in your Sendy Settings.
 *   **List ID**: The ID of the list you wish to send to by default.
 
-## 📸 Screenshots
 
-| Newsletter Builder | Design Settings |
-|:---:|:---:|
-| *Create campaigns with ease* | *Choose layouts & banners* |
-| ![Builder UI](https://via.placeholder.com/400x200?text=Builder+UI) | ![Design Settings](https://via.placeholder.com/400x200?text=Design+Settings) |
 
 ## ☕ Support
 
 If this plugin helps you, please consider buying me a coffee!
 
-[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/gunjanjaswal)
+<a href="https://buymeacoffee.com/gunjanjaswal" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="40" width="145"></a>
 
 ## 📬 Contact
 
