@@ -60,6 +60,48 @@ Create beautiful, responsive newsletters directly from your WordPress posts and 
 
 ---
 
+## 🔧 Troubleshooting
+
+### Scheduled Campaigns Not Sending on Time?
+
+**Why:** WordPress uses WP-Cron, which only triggers when someone visits your site. Low-traffic sites may experience delays.
+
+**Quick Fix:**
+- The plugin automatically detects overdue campaigns
+- You'll see a warning notice with a **"Send Now"** button
+
+**Permanent Solution (Recommended for Production):**
+
+1. **Disable WP-Cron** by adding this to `wp-config.php`:
+   ```php
+   define('DISABLE_WP_CRON', true);
+   ```
+
+2. **Set up a real cron job** (via cPanel, Plesk, or server SSH):
+   ```bash
+   * * * * * wget -q -O - https://yourdomain.com/wp-cron.php?doing_wp_cron >/dev/null 2>&1
+   ```
+   
+   Or using `curl`:
+   ```bash
+   * * * * * curl https://yourdomain.com/wp-cron.php?doing_wp_cron >/dev/null 2>&1
+   ```
+
+### Campaign Failed to Send?
+
+Failed campaigns will display:
+- ❌ Red error notice at the top of the Campaigns page
+- 📋 Exact error message in the "Error" column
+- 🔄 **"Retry Send"** button for instant retry
+
+**Common Errors:**
+- **"Reply to email not passed"** - Fixed automatically in v1.0.0+
+- **"Invalid API key"** - Check your Sendy settings
+- **"List ID is required"** - Verify your default list ID in settings
+
+
+---
+
 ## 🤝 Support
 
 Created by **Gunjan Jaswal**.

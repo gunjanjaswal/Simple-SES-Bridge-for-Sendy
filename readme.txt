@@ -47,6 +47,30 @@ Newsletter, Sendy, Amazon SES, Email Marketing, Post to Email, Visual Builder, D
 3.  Navigate to **Settings > Simple Sendy Bridge** to configure your Sendy options (URL, API Key, List ID).
 4.  Go to **Simple Sendy Bridge > Create Newsletter** to start building!
 
+== Frequently Asked Questions ==
+
+= Why didn't my scheduled campaign send on time? =
+
+WordPress uses WP-Cron, which only runs when someone visits your site. If your site has low traffic, scheduled campaigns may be delayed.
+
+**Solution 1: Manual Trigger**
+The plugin will show a warning notice with a "Send Now" button for overdue campaigns.
+
+**Solution 2: Set Up Real Cron (Recommended for Production)**
+1. Add to `wp-config.php`: `define('DISABLE_WP_CRON', true);`
+2. Set up a system cron job (via cPanel or server) to run every minute:
+   `* * * * * wget -q -O - https://yourdomain.com/wp-cron.php?doing_wp_cron >/dev/null 2>&1`
+
+= What if a campaign fails to send? =
+
+Failed campaigns will show:
+- A red error notice at the top of the Campaigns page
+- The exact error message in the "Error" column
+- A "Retry Send" button to try again
+
+Common errors include missing Reply-To email (now fixed automatically) or invalid Sendy API credentials.
+
+
 == Screenshots ==
 
 1.  **Newsletter Builder:** Search for posts and see them appear instantly.
