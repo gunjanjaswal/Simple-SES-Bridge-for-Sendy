@@ -66,9 +66,10 @@ Create beautiful, responsive newsletters directly from your WordPress posts and 
 
 **Why:** WordPress uses WP-Cron, which only triggers when someone visits your site. Low-traffic sites may experience delays.
 
-**Quick Fix:**
-- The plugin automatically detects overdue campaigns
-- You'll see a warning notice with a **"Send Now"** button
+**Automatic Recovery:**
+- The plugin **automatically detects and sends** overdue campaigns when you visit the Campaigns page
+- You'll see a green success notice: *"Overdue Campaign Sent: [Campaign Name] was automatically sent."*
+- If auto-send fails, you'll see the error message with a **"Retry Send"** button
 
 **Permanent Solution (Recommended for Production):**
 

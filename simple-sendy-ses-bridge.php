@@ -234,16 +234,33 @@ class SSSB_Core
 
         if (!empty($overdue)) {
             foreach ($overdue as $campaign) {
-                $send_url = add_query_arg(array(
-                    'action' => 'sssb_manual_send',
-                    'campaign_id' => $campaign->ID,
-                    'nonce' => wp_create_nonce('sssb_manual_send_' . $campaign->ID)
-                ), admin_url('admin.php'));
+                // Automatically send the overdue campaign
+                $this->send_scheduled_campaign($campaign->ID);
+                
+                // Check if it was sent successfully
+                $status = get_post_meta($campaign->ID, '_sssb_status', true);
+                
+                if ($status === 'sent') {
+                    echo '<div class="notice notice-success is-dismissible">';
+                    echo '<p><strong>Overdue Campaign Sent:</strong> "' . esc_html($campaign->post_title) . '" was automatically sent.</p>';
+                    echo '</div>';
+                } else {
+                    // If it failed, show error with retry button
+                    $error = get_post_meta($campaign->ID, '_sssb_send_error', true);
+                    $retry_url = add_query_arg(array(
+                        'action' => 'sssb_retry_send',
+                        'campaign_id' => $campaign->ID,
+                        'nonce' => wp_create_nonce('sssb_retry_send_' . $campaign->ID)
+                    ), admin_url('admin.php'));
 
-                echo '<div class="notice notice-warning is-dismissible">';
-                echo '<p><strong>Campaign Overdue:</strong> "' . esc_html($campaign->post_title) . '" was scheduled but hasn\'t sent yet (WP-Cron issue).</p>';
-                echo '<p><a href="' . esc_url($send_url) . '" class="button button-primary">Send Now</a></p>';
-                echo '</div>';
+                    echo '<div class="notice notice-warning is-dismissible">';
+                    echo '<p><strong>Campaign Failed to Auto-Send:</strong> "' . esc_html($campaign->post_title) . '"</p>';
+                    if ($error) {
+                        echo '<p><strong>Error:</strong> ' . esc_html($error) . '</p>';
+                    }
+                    echo '<p><a href="' . esc_url($retry_url) . '" class="button button-primary">Retry Send</a></p>';
+                    echo '</div>';
+                }
             }
         }
 

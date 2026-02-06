@@ -29,7 +29,7 @@ A powerful, visual newsletter builder for Sendy. Create beautiful, responsive ca
     *   Schedule campaigns to send at a specific future time.
     *   **Status Tracking:** Clear admin columns showing "Scheduled", "Sent", or "Draft" status.
     *   **Error Handling:** Failed campaigns display error messages with one-click retry.
-    *   **Overdue Detection:** Automatic alerts for campaigns that didn't send due to WP-Cron issues.
+    *   **Auto-Recovery:** Overdue campaigns automatically send when you visit the admin page.
 *   **✨ Polished UI:** 
     *   "Read More" buttons for consistent calls to action.
     *   Equal-height cards on desktop for a symmetrical, professional look.
@@ -53,10 +53,11 @@ Newsletter, Sendy, Amazon SES, Email Marketing, Post to Email, Visual Builder, D
 
 WordPress uses WP-Cron, which only runs when someone visits your site. If your site has low traffic, scheduled campaigns may be delayed.
 
-**Solution 1: Manual Trigger**
-The plugin will show a warning notice with a "Send Now" button for overdue campaigns.
+**Automatic Recovery:**
+The plugin automatically detects and sends overdue campaigns when you visit the Campaigns page. You'll see a success notice confirming the send.
 
-**Solution 2: Set Up Real Cron (Recommended for Production)**
+**For Production Sites (Recommended):**
+Set up a real cron job to ensure campaigns send exactly on time:
 1. Add to `wp-config.php`: `define('DISABLE_WP_CRON', true);`
 2. Set up a system cron job (via cPanel or server) to run every minute:
    `* * * * * wget -q -O - https://yourdomain.com/wp-cron.php?doing_wp_cron >/dev/null 2>&1`
@@ -101,4 +102,4 @@ This runs every 5 minutes to automatically process queued campaigns.
 *   Feature: Custom Admin Columns for Status and Scheduled Time.
 *   Feature: Error Display Column for Failed Campaigns.
 *   Feature: One-Click Retry for Failed Campaigns.
-*   Feature: Automatic Detection of Overdue Scheduled Campaigns.
+*   Feature: Automatic Detection and Sending of Overdue Scheduled Campaigns.
