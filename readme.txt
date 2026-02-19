@@ -3,7 +3,7 @@ Contributors: gunjanjaswal
 Tags: sendy, newsletter, email, amazon-ses, marketing
 Requires at least: 5.8
 Tested up to: 6.9
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://buymeacoffee.com/gunjanjaswal
@@ -99,11 +99,18 @@ This runs every 5 minutes to automatically process queued campaigns.
 
 == Changelog ==
 
+= 1.0.2 =
+*   Fix: Resolved "cURL error 28: SSL connection timeout" by increasing API timeout to 60s.
+*   Fix: Disabled strict SSL verification for better compatibility with self-hosted Sendy instances.
+
+= 1.0.1 =
+*   Feature: Custom Footer Text with HTML support in a highlighted box.
+*   Feature: Footer logo now automatically links to the site homepage.
+*   Tweak: Improved footer link visibility (defaulting to blue).
+
 = 1.0.0 =
 *   Initial Release.
 *   Feature: Visual Newsletter Builder with drag-and-drop post selection.
-*   Feature: Custom Footer Text with HTML support in a highlighted box.
-*   Feature: Footer logo automatically links to the site homepage.
 *   Feature: Hero banner with customizable image upload.
 *   Feature: Two layout options: List view and Grid (2-column) view.
 *   Feature: Responsive email design with mobile-optimized stacking.
